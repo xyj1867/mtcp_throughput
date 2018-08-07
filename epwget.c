@@ -63,8 +63,6 @@ static int done[MAX_CPUS];
 static int num_cores;
 static int core_limit;
 /*----------------------------------------------------------------------------*/
-
-static char outfile[MAX_FILE_LEN + 1];
 /*----------------------------------------------------------------------------*/
 static char host[MAX_IP_STR_LEN + 1] = {'\0'};
 static char url[MAX_URL_LEN + 1] = {'\0'};
@@ -77,7 +75,6 @@ static int flows[MAX_CPUS];
 
 static int concurrency;
 static int max_fds;
-static int response_size = 0;
 char request[HTTP_HEADER_LEN];
 /*----------------------------------------------------------------------------*/
 struct wget_stat
@@ -623,7 +620,6 @@ main(int argc, char **argv)
 		core_limit = total_flows;
 	}
 
-	/* per-core concurrency = total_concurrency / # cores */
 	if (total_concurrency > 0)
 		concurrency = total_concurrency / core_limit;
 
