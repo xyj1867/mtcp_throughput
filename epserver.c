@@ -101,21 +101,6 @@ static int nfiles;
 /*----------------------------------------------------------------------------*/
 static int finished;
 /*----------------------------------------------------------------------------*/
-static char *
-StatusCodeToString(int scode)
-{
-	switch (scode) {
-		case 200:
-			return "OK";
-			break;
-
-		case 404:
-			return "Not Found";
-			break;
-	}
-
-	return NULL;
-}
 /*----------------------------------------------------------------------------*/
 void
 CleanServerVariable(struct server_vars *sv)
@@ -196,7 +181,6 @@ HandleReadEvent(struct thread_context *ctx, int sockid, struct server_vars *sv)
 	char t_str[128];
 	char keepalive_str[128];
 	int rd;
-	int i;
 	int len;
 	int sent;
 
