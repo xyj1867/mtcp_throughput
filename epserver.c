@@ -191,9 +191,7 @@ HandleReadEvent(struct thread_context *ctx, int sockid, struct server_vars *sv)
 {
 	struct mtcp_epoll_event ev;
 	char buf[HTTP_HEADER_LEN];
-	char url[URL_LEN];
-
-	int scode;						// status code
+	char url[URL_LEN];						// status code
 	time_t t_now;
 	char t_str[128];
 	char keepalive_str[128];
@@ -236,15 +234,6 @@ HandleReadEvent(struct thread_context *ctx, int sockid, struct server_vars *sv)
 	}
 
 	/* Find file in cache */
-	scode = 404;
-	for (i = 0; i < nfiles; i++) {
-		if (strcmp(sv->fname, fcache[i].fullname) == 0) {
-			sv->fsize = fcache[i].size;
-			sv->fidx = i;
-			scode = 200;
-			break;
-		}
-	}
 	TRACE_APP("Socket %d File size: %ld (%ldMB)\n", 
 			sockid, sv->fsize, sv->fsize / 1024 / 1024);
 
